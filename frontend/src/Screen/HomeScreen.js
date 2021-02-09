@@ -14,7 +14,6 @@ function HomeScreen() {
           fetchProducts();
   }, [])    
 
-  
     return (
         <div>
             <Container>
