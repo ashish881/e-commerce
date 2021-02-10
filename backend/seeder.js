@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const users = require('./data/user');
 const product = require('./data/products');
 const User = require('./Model/UserModel');
+const Order = require('./Model/OrderModel');
 const Product = require('./Model/ProductsModel');
 const conMongodb = require('./db');
 
@@ -14,6 +15,7 @@ const importData = async () => {
         // deleting the all data in model database
         await User.deleteMany();
         await Product.deleteMany();
+        await Order.deleteMany();
         // importing the user data into User Model
         const createdUsers = await User.insertMany(users);
         // finding the admin user in model

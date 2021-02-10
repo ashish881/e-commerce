@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 function Header() {
     return (
-        <div>
+        <div className="navbar1">
         <Container>
         <Navbar expand="lg">
         <LinkContainer to='/'>
