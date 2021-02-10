@@ -2,7 +2,7 @@ const express = require('express');
 const env = require('dotenv');
 const conMongodb = require('./db')
 const app = express();
-const products = require('./products');
+const products = require('./data/products');
 
 env.config();
 conMongodb();
