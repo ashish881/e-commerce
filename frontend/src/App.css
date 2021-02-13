@@ -8,3 +8,12 @@
     background-color:rgb(247, 231, 231);
     margin-bottom: 1rem;
 }
+
+h1{
+    font-size: 1.4rem;
+    padding: .1rem;
+}
+
+h2{
+    font-size: 1.4rem;
+}
