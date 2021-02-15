@@ -8,11 +8,11 @@ function Products(props) {
     return (
         <div>
             <Card className='my-3'>
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/product/${product._id}`}>
                 <Card.Img variant="top" src={product.image} alt={product.name}/>
                 </Link>
                 <Card.Body>
-                <Link to={`/product/${product.id}`}>
+                <Link to={`/product/${product._id}`}>
                     <Card.Title>{product.name}</Card.Title>
                     </Link>
                     <Card.Text>

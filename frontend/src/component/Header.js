@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 function Header() {
     return (
-        <div>
+        <div className="navbar1">
         <Container>
         <Navbar expand="lg">
         <LinkContainer to='/'>
@@ -13,8 +13,10 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-        <Nav.Link href="#home" className="cart"><i className="fas fa-shopping-cart">Cart</i></Nav.Link>
-        <Nav.Link href="#link"><i className="fas fa-user">Login</i></Nav.Link>
+        <LinkContainer to='/cart'>
+        <Nav.Link className="cart"><i className="fas fa-shopping-cart">Cart</i></Nav.Link>
+        </LinkContainer>
+        <Nav.Link><i className="fas fa-user">Login</i></Nav.Link>
       </Nav> 
         </Navbar.Collapse>
       </Navbar>
