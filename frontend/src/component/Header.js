@@ -25,6 +25,7 @@ function Header() {
               <LinkContainer to='/cart'>
                 <Nav.Link className="cart"><i className="fas fa-shopping-cart">Cart</i></Nav.Link>
               </LinkContainer>
+              {/* Dropdown Menu*/}
               {userInfo ? <NavDropdown title={userInfo.name} id="username">
                 <LinkContainer to='/profile'>
                   <NavDropdown.Item>Profile</NavDropdown.Item>
@@ -33,6 +34,7 @@ function Header() {
               </NavDropdown> : <LinkContainer to='/login'>
                   <Nav.Link><i className="fas fa-user">Login</i></Nav.Link>
                 </LinkContainer>}
+
             </Nav>
           </Navbar.Collapse>
         </Navbar>
