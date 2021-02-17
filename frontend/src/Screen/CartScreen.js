@@ -13,7 +13,7 @@ function CartScreen(props) {
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
-
+   
     useEffect(() => {
         if (id) {
             dispatch(cartAction(id, qty));
@@ -26,6 +26,7 @@ function CartScreen(props) {
 
     const checkoutHandler = () => {
          props.history.push('/login?redirect=shipping');
+        
     }
     return (
         <Container>
