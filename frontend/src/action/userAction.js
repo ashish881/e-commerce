@@ -1,5 +1,5 @@
 import axios from "axios"
-import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_PROFILE_DETAILS_REQUEST, USER_PROFILE_DETAILS_SUCCESS, USER_PROFILE_DETAILS_FAIL } from "../constant/userConstant"
+import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_PROFILE_DETAILS_REQUEST, USER_PROFILE_DETAILS_SUCCESS, USER_PROFILE_DETAILS_FAIL, USER_PROFILE_UPDATE_SUCCESS, USER_PROFILE_UPDATE_REQUEST, USER_PROFILE_UPDATE_FAIL } from "../constant/userConstant"
 
 export const userLogin = (email, password) => async (dispatch) => {
 
@@ -102,6 +102,41 @@ export const userProfileDetails = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: USER_PROFILE_DETAILS_FAIL,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message
+        })
+    }
+};
+
+// Profile update
+
+export const userProfileUpdate = (dat) => async (dispatch, getState) => {
+
+    try {
+        dispatch({
+            type: USER_PROFILE_UPDATE_REQUEST
+        })
+
+        //get the token from localstorage
+        const { userLogin: { userInfo } } = getState();
+
+        //send the token in header 
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            }
+        }
+        const { data } = await axios.put('/api/user/profile', dat, config)
+
+        dispatch({
+            type: USER_PROFILE_UPDATE_SUCCESS,
+            payload: data
+        });
+
+    } catch (error) {
+        dispatch({
+            type: USER_PROFILE_UPDATE_FAIL,
             payload: error.response && error.response.data.message ?
                 error.response.data.message : error.message
         })

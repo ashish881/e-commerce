@@ -84,5 +84,35 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 })
 
+const updateUserProfile = asyncHandler(async (req, res) => {
+    //find the id got from the token decoded and send the user data which are logged in...
+    //we can use req.userss any protecting routes
+    const user = await User.findById(req.userss._id)
+      // if user exist then update their profile or remain as it is..
+    if (user) {
+         user.name = req.body.name || user.name,
+         user.email = req.body.email || user.email
+         // if password is enter by user then update it
+         if(req.body.password){
+            user.password = req.body.password
+        }
+     // update the user in db
+       const updatedUser = await user.save();
+  
 
-module.exports = { authUser, getUserProfile, registerUser };
+       // And send the response as a updated one
+     res.json({
+         _id: updatedUser._id,
+         name: updatedUser.name,
+         email: updatedUser.email,
+         isAdmin: updatedUser.isAdmin,
+         token: generateToken(updatedUser._id)
+     })
+    }else {
+        res.status(404)
+        throw new Error('User not Found')
+    }
+})
+
+
+module.exports = { authUser, getUserProfile, registerUser, updateUserProfile };
